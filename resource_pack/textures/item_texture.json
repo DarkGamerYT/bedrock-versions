@@ -1,0 +1,15 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "armadillo_scute": {
+      "textures": "textures/items/armadillo_scute"
+    },
+    "wolf_armor": {
+      "textures": [
+        "textures/items/wolf_armor",
+        "textures/items/wolf_armor_dyed"
+      ]
+    }
+  }
+}

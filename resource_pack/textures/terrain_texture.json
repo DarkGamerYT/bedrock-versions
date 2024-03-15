@@ -1,0 +1,41 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "oak_sapling": {
+      "textures": "textures/blocks/sapling_oak"
+    },
+    "spruce_sapling": {
+      "textures": "textures/blocks/sapling_spruce"
+    },
+    "birch_sapling": {
+      "textures": "textures/blocks/sapling_birch"
+    },
+    "jungle_sapling": {
+      "textures": "textures/blocks/sapling_jungle"
+    },
+    "acacia_sapling": {
+      "textures": "textures/blocks/sapling_acacia"
+    },
+    "dark_oak_sapling": {
+      "textures": "textures/blocks/sapling_roofed_oak"
+    },
+    "tube_coral_fan": {
+      "textures": "textures/blocks/coral_fan_blue"
+    },
+    "brain_coral_fan": {
+      "textures": "textures/blocks/coral_fan_pink"
+    },
+    "bubble_coral_fan": {
+      "textures": "textures/blocks/coral_fan_purple"
+    },
+    "fire_coral_fan": {
+      "textures": "textures/blocks/coral_fan_red"
+    },
+    "horn_coral_fan": {
+      "textures": "textures/blocks/coral_fan_yellow"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+    "cherry_grove": {
+        "event_name": "music.overworld.cherry_grove",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "desert": {
+        "event_name": "music.overworld.desert",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "desert_hills": {
+        "event_name": "music.overworld.desert",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "desert_hills_mutated": {
+        "event_name": "music.overworld.desert",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "flower_forest": {
+        "event_name": "music.overworld.flower_forest",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "mesa": {
+        "event_name": "music.overworld.mesa",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "mesa_plateau": {
+        "event_name": "music.overworld.mesa",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "mesa_plateau_mutated": {
+        "event_name": "music.overworld.mesa",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "jungle": {
+        "event_name": "music.overworld.jungle",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "jungle_hills": {
+        "event_name": "music.overworld.jungle",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "jungle_hills_mutated": {
+        "event_name": "music.overworld.jungle",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "jungle_edge": {
+        "event_name": "music.overworld.jungle_edge",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "bamboo_jungle": {
+        "event_name": "music.overworld.bamboo_jungle",
+        "min_delay": 60,
+        "max_delay": 180
+    },
+    "bamboo_jungle_hills": {
+        "event_name": "music.overworld.bamboo_jungle",
+        "min_delay": 60,
+        "max_delay": 180
+    }
+}

@@ -1,0 +1,857 @@
+{
+    "enums": [
+        {
+            "name": "ChatRestrictions",
+            "values": [
+                {
+                    "value": "None"
+                },
+                {
+                    "value": "Dropped"
+                },
+                {
+                    "value": "Disabled"
+                }
+            ]
+        },
+        {
+            "name": "CompressionAlgorithms",
+            "values": [
+                {
+                    "value": "zlib"
+                },
+                {
+                    "value": "snappy"
+                }
+            ]
+        },
+        {
+            "name": "ContentLogLevels",
+            "values": [
+                {
+                    "value": "verbose"
+                },
+                {
+                    "value": "info"
+                },
+                {
+                    "value": "warning"
+                },
+                {
+                    "value": "error"
+                }
+            ]
+        },
+        {
+            "name": "PlayerPermissionLevels",
+            "values": [
+                {
+                    "value": "visitor"
+                },
+                {
+                    "value": "member"
+                },
+                {
+                    "value": "operator"
+                }
+            ]
+        },
+        {
+            "name": "Difficulties",
+            "values": [
+                {
+                    "value": "peaceful",
+                    "mappings": ["0"]
+                },
+                {
+                    "value": "easy",
+                    "mappings": ["1"]
+                },
+                {
+                    "value": "normal",
+                    "mappings": ["2"]
+                },
+                {
+                    "value": "hard",
+                    "mappings": ["3"]
+                }
+            ]
+        },
+        {
+            "name": "Gamemodes",
+            "values": [
+                {
+                    "value": "survival",
+                    "mappings": ["0"]
+                },
+                {
+                    "value": "creative",
+                    "mappings": ["1"]
+                },
+                {
+                    "value": "adventure",
+                    "mappings": ["2"]
+                },
+                {
+                    "value": "spectator"
+                }
+            ]
+        },
+        {
+            "name": "LevelTypes",
+            "values": [
+                {
+                    "value": "DEFAULT",
+                    "mappings": ["default"]
+                },
+                {
+                    "value": "FLAT",
+                    "mappings": ["flat"]
+                },
+                {
+                    "value": "LEGACY",
+                    "mappings": ["legacy"]
+                }
+            ]
+        },
+        {
+            "name": "PlayerTickPolicies",
+            "values": [
+                {
+                    "value": "greedy"
+                },
+                {
+                    "value": "throttled"
+                }
+            ]
+        },
+        {
+            "name": "ScriptDebuggerAttach",
+            "values": [
+                {
+                    "value": "connect"
+                },
+                {
+                    "value": "listen"
+                },
+                {
+                    "value": "disabled"
+                }
+            ]
+        },
+        {
+            "name": "ServerAuthoritativeMovements",
+            "values": [
+                {
+                    "value": "server-auth"
+                },
+                {
+                    "value": "client-auth"
+                },
+                {
+                    "value": "server-auth-with-rewind"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "adventure-mode-overrides-enabled",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "allow-cheats",
+            "description": "If true then cheats like commands can be used.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "allow-inbound-script-debugging",
+            "description": "Allows script debugger 'listen' command and script-debugger-auto-attach=listen mode.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "allow-list",
+            "description": "If true then all connected players must be listed in the separate allowlist.json file.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "allow-outbound-script-debugging",
+            "description": "Allows script debugger 'connect' command and script-debugger-auto-attach=connect mode.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "application-id",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "application-secret",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "block-network-ids-are-hashes",
+            "description": "If true, the server will send hashed block network ID's instead of id's that start from 0 and go up.\nThese id's are stable and won't change regardless of other block changes.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "chat-restriction",
+            "description": "This represents the level of restriction applied to the chat for each player that joins the server.\n\"None\" is the default and represents regular free chat.\n\"Dropped\" means the chat messages are dropped and never sent to any client. Players receive a message to let them know the feature is disabled.\n\"Disabled\" means that unless the player is an operator, the chat UI does not even appear. No information is displayed to the player.",
+            "type": {
+                "name": "ChatRestrictions"
+            }
+        },
+        {
+            "name": "client-side-chunk-generation-enabled",
+            "description": "If true, the server will inform clients that they have the ability to generate visual level chunks outside of player interaction distances.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "client-throttle-scalar",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "client-throttle-threshold",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": -2147483648
+                }
+            }
+        },
+        {
+            "name": "compression-algorithm",
+            "description": "Determines the compression algorithm to use for networking",
+            "type": {
+                "name": "CompressionAlgorithms"
+            }
+        },
+        {
+            "name": "compression-threshold",
+            "description": "Determines the smallest size of raw network payload to compress. 0-65535",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 65535,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "content-log-console-output-enabled",
+            "description": "Enables logging content errors to the console.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "content-log-file-enabled",
+            "description": "Enables logging content errors to a file",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "content-log-level",
+            "description": null,
+            "type": {
+                "name": "ContentLogLevels"
+            }
+        },
+        {
+            "name": "correct-player-movement",
+            "description": "If true, the client position will get corrected to the server position if the movement score exceeds the threshold.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "default-player-permission-level",
+            "description": "Permission level for new players joining for the first time.",
+            "type": {
+                "name": "PlayerPermissionLevels"
+            }
+        },
+        {
+            "name": "difficulty",
+            "description": "Sets the difficulty of the world.",
+            "type": {
+                "name": "Difficulties"
+            }
+        },
+        {
+            "name": "disable-custom-skins",
+            "description": "If true, disable players customized skins that were customized outside of the Minecraft store assets or in game assets.\nThis is used to disable possibly offensive custom skins players make.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "disable-emote-chat",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "disable-persona",
+            "description": "Internal Use Only",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "disable-player-interaction",
+            "description": "If true, the server will inform clients that they should ignore other players when interacting with the world. This is not server authoritative.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "emit-server-telemetry",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-item-stack-net-manager-deprecated",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-lan-visibility",
+            "description": "Listen and respond to clients that are looking for servers on the LAN. This will cause the server to bind to the default ports (19132, 19133) even when `server-port` and `server-portv6` have non-default values.\nConsider turning this off if LAN discovery is not desirable, or when running multiple servers on the same host may lead to port conflicts.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-player-changed-skin-text",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-player-connection-text",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-player-sleeping-text",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "enable-script",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "force-gamemode",
+            "description": "force-gamemode=false (or force-gamemode  is not defined in the server.properties) prevents the server from sending to the client gamemode values other than the gamemode value saved by the server during world creation even if those values are set in server.properties after world creation.\nforce-gamemode=true forces the server to send to the client gamemode values other than the gamemode value saved by the server during world creation if those values are set in server.properties after world creation.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "force-inbound-debug-port",
+            "description": "Locks the inbound (listen) debugger port, if not set then default 19144 will be used. Required when using script-debugger-auto-attach=listen mode.",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 65535,
+                    "min": 1
+                }
+            }
+        },
+        {
+            "name": "gamemode",
+            "description": null,
+            "type": {
+                "name": "Gamemodes"
+            }
+        },
+        {
+            "name": "item-transaction-logging-enabled",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "language",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "level-name",
+            "description": "Any string without semicolon symbol or symbols illegal for file name: /\\n\\r\\t\\f`?*\\<>|\":",
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "level-seed",
+            "description": "Use to randomize the world seed. Any string",
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "level-type",
+            "description": null,
+            "type": {
+                "name": "LevelTypes"
+            }
+        },
+        {
+            "name": "max-players",
+            "description": "The maximum number of players that can play on the server. Any positive integer",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 1
+                }
+            }
+        },
+        {
+            "name": "max-threads",
+            "description": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible. Any positive integer.",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "msa-gamertags-only",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "online-mode",
+            "description": "If true then all connected players must be authenticated to Xbox Live. Clients connecting to remote (non-LAN) servers will always require Xbox Live authentication regardless of this setting.\nIf the server accepts connections from the Internet, then it's highly recommended to enable online-mode.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "op-permission-level",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "player-idle-timeout",
+            "description": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely. Any non-negative integer.",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "player-movement-action-direction-threshold",
+            "description": "The amount that the player's attack direction and look direction can differ.\nAny value in the range of [0, 1] where 1 means that the direction of the players view and the direction the player is attacking must match exactly and a value of 0 means that the two directions can differ by up to and including 90 degrees.",
+            "type": {
+                "name": "float",
+                "valid_range": {
+                    "max": 1.0,
+                    "min": 0.0
+                }
+            }
+        },
+        {
+            "name": "player-rewind-history-size-ticks",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "player-rewind-min-correction-delay-ticks",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "player-tick-policy",
+            "description": null,
+            "type": {
+                "name": "PlayerTickPolicies"
+            }
+        },
+        {
+            "name": "player-tick-throttled-input-batch-size",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "player-tick-throttled-max-tick-credits",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "raknet-joinflood-protection",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "realms-stories-enabled",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "remote-server-communication-endpoint",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "script-debugger-auto-attach",
+            "description": "Attempt to attach script debugger at level load, requires that either inbound port or connect address is set and that inbound or outbound connections are enabled.\n\"disabled\" will not auto attach.\n\"connect\" server will attempt to connect to debugger in listening mode on the specified port.\n\"listen\" server will listen to inbound connect attempts from debugger using connect mode on the specified port.",
+            "type": {
+                "name": "ScriptDebuggerAttach"
+            }
+        },
+        {
+            "name": "script-debugger-auto-attach-connect-address",
+            "description": "When auto attach mode is set to 'connect', use this address in the form host:port with port in the range [ 1, 65535 ]. Required for script-debugger-auto-attach=connect mode.",
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "script-watchdog-enable",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "script-watchdog-enable-exception-handling",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "script-watchdog-enable-shutdown",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "script-watchdog-hang-exception",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "script-watchdog-hang-threshold",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "script-watchdog-memory-limit",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 2000
+                }
+            }
+        },
+        {
+            "name": "script-watchdog-memory-warning",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 2000
+                }
+            }
+        },
+        {
+            "name": "script-watchdog-slow-threshold",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "script-watchdog-spike-threshold",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 0
+                }
+            }
+        },
+        {
+            "name": "server-authoritative-block-breaking",
+            "description": "If true, the server will compute block mining operations in sync with the client so it can verify that the client should be able to break blocks when it thinks it can.",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "server-authoritative-block-breaking-pick-range-scalar",
+            "description": null,
+            "type": {
+                "name": "float"
+            }
+        },
+        {
+            "name": "server-authoritative-movement",
+            "description": "Enables server authoritative movement. If \"server-auth\", the server will replay local user input on the server and send down corrections when the client's position doesn't match the server's. If server-auth-with-rewind\" is enabled and the server sends a correction, the clients will be instructed to rewind time back to the correction time, apply the correction, then replay all the player's inputs since then. This results in smoother and more frequent corrections. Corrections will only happen if correct-player-movement is set to true.",
+            "type": {
+                "name": "variant",
+                "variant_types": [
+                    {
+                        "name": "ServerAuthoritativeMovements"
+                    },
+                    {
+                        "name": "boolean"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "server-authoritative-sound",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "server-build-radius-ratio",
+            "description": "If \"Disabled\" the server will dynamically calculate how much of the player's view it will generate, assigning the rest to the client to build.\nOtherwise from the overridden ratio tell the server how much of the player's view to generate, disregarding client hardware capability.\nOnly valid if client-side-chunk-generation-enabled is enabled",
+            "type": {
+                "name": "variant",
+                "variant_types": [
+                    {
+                        "name": "string",
+                        "values": [
+                            {
+                                "value": "Disabled"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "float",
+                        "valid_range": {
+                            "max": 1.0,
+                            "min": 0.0
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "server-id",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "server-name",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "server-port",
+            "description": "Which IPv4 port the server should listen to. Integers in the range [1, 65535]",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 65535,
+                    "min": 1
+                }
+            }
+        },
+        {
+            "name": "server-portv6",
+            "description": "Which IPv6 port the server should listen to. Integers in the range [1, 65535]",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 65535,
+                    "min": 1
+                }
+            }
+        },
+        {
+            "name": "server-type",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "server-wakeup-frequency",
+            "description": null,
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": -2147483647
+                }
+            }
+        },
+        {
+            "name": "texturepack-required",
+            "description": "Force clients to use texture packs in the current world",
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "tick-distance",
+            "description": "The world will be ticked this many chunks away from any player. Integers in the range [4, 12] inclusive",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 12,
+                    "min": 4
+                }
+            }
+        },
+        {
+            "name": "trusted-key",
+            "description": null,
+            "type": {
+                "name": "string"
+            }
+        },
+        {
+            "name": "tick-distance",
+            "description": "The maximum allowed view distance in number of chunks. Positive integer equal to 5 or greater.",
+            "type": {
+                "name": "int32",
+                "valid_range": {
+                    "max": 2147483647,
+                    "min": 5
+                }
+            }
+        },
+        {
+            "name": "white-list",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        },
+        {
+            "name": "wserver-retry-time",
+            "description": null,
+            "type": {
+                "name": "float"
+            }
+        },
+        {
+            "name": "wsserver-encryption",
+            "description": null,
+            "type": {
+                "name": "boolean"
+            }
+        }
+    ]
+}
