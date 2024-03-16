@@ -1,7 +1,7 @@
 {
     "version": "1.20.80-preview.22",
     "preview": true,
-    "releaseTime": "2024-03-14T15:24:58",
+    "release_time": "2024-03-14T15:24:58",
     "bds": {
         "build_id": "22814468",
         "commit_hash": "b96253bc74677576ef98463efe36c8b6111c18de",
