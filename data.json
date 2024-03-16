@@ -7,12 +7,12 @@
         {
             "version": "1.20.71-stable",
             "preview": false,
-            "releaseTime": "2024-03-12T15:46:43"
+            "release_time": "2024-03-12T15:46:43"
         },
         {
             "version": "1.20.80-preview.22",
             "preview": true,
-            "releaseTime": "2024-03-14T15:24:58"
+            "release_time": "2024-03-14T15:24:58"
         }
     ]
 }
