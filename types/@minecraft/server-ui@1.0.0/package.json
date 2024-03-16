@@ -1,0 +1,16 @@
+{
+    "name": "@minecraft/server-ui",
+    "version": "1.0.0",
+    "description": "",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "xKingDark",
+            "url": "https://github.com/DarkGamerYT"
+        }
+    ],
+    "dependencies": {
+        "@minecraft/common": "^1.0.0",
+        "@minecraft/server": "^1.2.0"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "@minecraft/vanilla-data",
+    "version": "1.20.71-stable",
+    "description": "",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "xKingDark",
+            "url": "https://github.com/DarkGamerYT"
+        }
+    ],
+    "exports": "./index.js",
+    "types": "./index.d.ts"
+}
