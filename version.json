@@ -1,7 +1,7 @@
 {
     "version": "1.20.71-stable",
     "preview": false,
-    "releaseTime": "2024-03-12T15:46:43",
+    "release_time": "2024-03-12T15:46:43",
     "bds": {
         "build_id": "22730305",
         "commit_hash": "42039c71c23561e02d99b28a8bfb34091a61cadf",
