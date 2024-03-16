@@ -1,0 +1,15 @@
+{
+    "name": "@minecraft/server",
+    "version": "1.8.0",
+    "description": "",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "xKingDark",
+            "url": "https://github.com/DarkGamerYT"
+        }
+    ],
+    "dependencies": {
+        "@minecraft/common": "^1.1.0"
+    }
+}
