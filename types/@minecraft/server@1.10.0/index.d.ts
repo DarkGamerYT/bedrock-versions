@@ -136,6 +136,7 @@ export enum EntityComponentTypes {
     PushThrough = "minecraft:push_through",
     Scale = "minecraft:scale",
     SkinId = "minecraft:skin_id",
+    TypeFamily = "minecraft:type_family",
     Variant = "minecraft:variant",
     WantsJockey = "minecraft:wants_jockey",
 }
@@ -256,6 +257,31 @@ export enum SignSide {
     Front = "Front",
 }
 
+export enum StructureAnimationMode {
+    Blocks = "Blocks",
+    Layers = "Layers",
+    None = "None",
+}
+
+export enum StructureMirrorAxis {
+    None = "None",
+    X = "X",
+    XZ = "XZ",
+    Z = "Z",
+}
+
+export enum StructureRotation {
+    None = "None",
+    Rotate180 = "Rotate180",
+    Rotate270 = "Rotate270",
+    Rotate90 = "Rotate90",
+}
+
+export enum StructureSaveMode {
+    Memory = "Memory",
+    World = "World",
+}
+
 export enum TimeOfDay {
     Day = 1000,
     Noon = 6000,
@@ -344,6 +370,14 @@ export class Block {
      * 
      * {@link LocationOutOfWorldBoundariesError}
      */
+    getItemStack(amount?: number, withData?: boolean): ItemStack | undefined;
+    /** 
+     * @throws This function can throw errors.
+     * 
+     * {@link LocationInUnloadedChunkError}
+     * 
+     * {@link LocationOutOfWorldBoundariesError}
+     */
     getTags(): string[];
     /** 
      * @throws This function can throw errors.
@@ -420,6 +454,7 @@ export class BlockInventoryComponent extends BlockComponent {
 export class BlockPermutation {
     private constructor();
     getAllStates(): Record<string, boolean | number | string>;
+    getItemStack(amount?: number): ItemStack | undefined;
     getState(stateName: string): boolean | number | string | undefined;
     matches(blockName: string, states?: Record<string, boolean | number | string>): boolean;
     /** @throws This function can throw errors. */
@@ -1622,6 +1657,16 @@ export class EntityType {
     readonly id: string;
 }
 
+// @ts-ignore Class inheritance allowed for native defined classes
+export class EntityTypeFamilyComponent extends EntityComponent {
+    private constructor();
+    static readonly componentId = "minecraft:type_family";
+    /** @throws This function can throw errors. */
+    getTypeFamilies(): string[];
+    /** @throws This function can throw errors. */
+    hasTypeFamily(typeFamily: string): boolean;
+}
+
 export class EntityTypes {
     private constructor();
     static get(identifier: string): EntityType | undefined;
@@ -2587,6 +2632,67 @@ export class ScriptEventCommandMessageAfterEventSignal {
     unsubscribe(callback: (arg: ScriptEventCommandMessageAfterEvent) => void): void;
 }
 
+export class Structure {
+    private constructor();
+    readonly id: string;
+    /** 
+     * @throws This property can throw when used.
+     * 
+     * {@link InvalidStructureError}
+     */
+    readonly size: Vector3;
+    /** 
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.InvalidArgumentError}
+     * 
+     * {@link InvalidStructureError}
+     */
+    getBlockPermutation(location: Vector3): BlockPermutation | undefined;
+    /** 
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.InvalidArgumentError}
+     * 
+     * {@link InvalidStructureError}
+     */
+    getIsWaterlogged(location: Vector3): boolean;
+    isValid(): boolean;
+}
+
+export class StructureManager {
+    private constructor();
+    /** 
+     * @remarks This function can't be called in read-only mode.
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.EngineError}
+     * 
+     * {@link minecraftcommon.InvalidArgumentError}
+     */
+    createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure;
+    /** 
+     * @remarks This function can't be called in read-only mode.
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.InvalidArgumentError}
+     */
+    delete(structure: string | Structure): boolean;
+    /** @remarks This function can't be called in read-only mode. */
+    get(identifier: string): Structure | undefined;
+    /** 
+     * @remarks This function can't be called in read-only mode.
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.ArgumentOutOfBoundsError}
+     * 
+     * {@link minecraftcommon.InvalidArgumentError}
+     * 
+     * {@link InvalidStructureError}
+     */
+    place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void;
+}
+
 export class System {
     private constructor();
     readonly afterEvents: SystemAfterEvents;
@@ -2663,6 +2769,7 @@ export class World {
     readonly afterEvents: WorldAfterEvents;
     readonly beforeEvents: WorldBeforeEvents;
     readonly scoreboard: Scoreboard;
+    readonly structureManager: StructureManager;
     clearDynamicProperties(): void;
     getAbsoluteTime(): number;
     /** @throws This function can throw errors. */
@@ -3007,6 +3114,24 @@ export interface ScriptEventMessageFilterOptions {
     namespaces: string[];
 }
 
+export interface StructureCreateOptions {
+    includeBlocks?: boolean;
+    includeEntities?: boolean;
+    saveMode?: StructureSaveMode;
+}
+
+export interface StructurePlaceOptions {
+    animationMode?: StructureAnimationMode;
+    animationSeconds?: number;
+    includeBlocks?: boolean;
+    includeEntities?: boolean;
+    integrity?: number;
+    integritySeed?: string;
+    mirror?: StructureMirrorAxis;
+    rotation?: StructureRotation;
+    waterlogged?: boolean;
+}
+
 export interface TeleportOptions {
     checkForBlocks?: boolean;
     dimension?: Dimension;
@@ -3045,6 +3170,11 @@ export class CommandError extends Error {
 
 // @ts-ignore Class inheritance allowed for native defined classes
 export class InvalidContainerSlotError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class InvalidStructureError extends Error {
     private constructor();
 }
 

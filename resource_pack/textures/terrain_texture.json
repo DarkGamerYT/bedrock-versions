@@ -36,6 +36,54 @@
     },
     "horn_coral_fan": {
       "textures": "textures/blocks/coral_fan_yellow"
+    },
+    "dead_tube_coral_fan": {
+      "textures": "textures/blocks/coral_fan_blue_dead"
+    },
+    "dead_brain_coral_fan": {
+      "textures": "textures/blocks/coral_fan_pink_dead"
+    },
+    "dead_bubble_coral_fan": {
+      "textures": "textures/blocks/coral_fan_purple_dead"
+    },
+    "dead_fire_coral_fan": {
+      "textures": "textures/blocks/coral_fan_red_dead"
+    },
+    "dead_horn_coral_fan": {
+      "textures": "textures/blocks/coral_fan_yellow_dead"
+    },
+    "poppy": {
+      "textures": "textures/blocks/flower_rose"
+    },
+    "blue_orchid": {
+      "textures": "textures/blocks/flower_blue_orchid"
+    },
+    "allium": {
+      "textures": "textures/blocks/flower_allium"
+    },
+    "azure_bluet": {
+      "textures": "textures/blocks/flower_houstonia"
+    },
+    "red_tulip": {
+      "textures": "textures/blocks/flower_tulip_red"
+    },
+    "orange_tulip": {
+      "textures": "textures/blocks/flower_tulip_orange"
+    },
+    "white_tulip": {
+      "textures": "textures/blocks/flower_tulip_white"
+    },
+    "pink_tulip": {
+      "textures": "textures/blocks/flower_tulip_pink"
+    },
+    "oxeye_daisy": {
+      "textures": "textures/blocks/flower_oxeye_daisy"
+    },
+    "cornflower": {
+      "textures": "textures/blocks/flower_cornflower"
+    },
+    "lily_of_the_valley": {
+      "textures": "textures/blocks/flower_lily_of_the_valley"
     }
   }
 }

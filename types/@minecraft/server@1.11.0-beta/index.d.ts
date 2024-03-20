@@ -863,8 +863,57 @@ export class BlockComponent extends Component {
 }
 
 // @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentEntityFallOnEvent extends BlockEvent {
+    private constructor();
+    readonly entity?: Entity;
+    readonly fallDistance: number;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentOnPlaceEvent extends BlockEvent {
+    private constructor();
+    readonly previousBlock: BlockPermutation;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentPlayerDestroyEvent extends BlockEvent {
+    private constructor();
+    readonly destroyedBlockPermutation: BlockPermutation;
+    readonly player?: Player;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentPlayerInteractEvent extends BlockEvent {
+    private constructor();
+    readonly face: Direction;
+    readonly faceLocation?: Vector3;
+    readonly player?: Player;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent {
+    private constructor();
+    cancel: boolean;
+    readonly face: Direction;
+    permutationToPlace: BlockPermutation;
+    readonly player?: Player;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
 export class BlockComponentRandomTickEvent extends BlockEvent {
     private constructor();
+}
+
+export class BlockComponentRegistry {
+    private constructor();
+    /** 
+     * @throws This function can throw errors.
+     * 
+     * {@link minecraftcommon.EngineError}
+     * 
+     * {@link Error}
+     */
+    registerCustomComponent(name: string, customComponent: BlockCustomComponent): void;
 }
 
 // @ts-ignore Class inheritance allowed for native defined classes
@@ -877,6 +926,11 @@ export class BlockComponentStepOffEvent extends BlockEvent {
 export class BlockComponentStepOnEvent extends BlockEvent {
     private constructor();
     readonly entity?: Entity;
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class BlockComponentTickEvent extends BlockEvent {
+    private constructor();
 }
 
 export class BlockEvent {
@@ -1043,18 +1097,6 @@ export class BlockType {
     private constructor();
     readonly canBeWaterlogged: boolean;
     readonly id: string;
-}
-
-export class BlockTypeRegistry {
-    private constructor();
-    /** 
-     * @throws This function can throw errors.
-     * 
-     * {@link minecraftcommon.EngineError}
-     * 
-     * {@link Error}
-     */
-    registerCustomComponent(name: string, customComponent: BlockCustomComponent): void;
 }
 
 export class BlockTypes {
@@ -1602,7 +1644,7 @@ export class Dimension {
      * 
      * {@link LocationOutOfWorldBoundariesError}
      */
-    spawnEntity(identifier: string, location: Vector3): Entity;
+    spawnEntity(identifier: string, location: Vector3, options?: SpawnEntityOptions): Entity;
     /** 
      * @remarks This function can't be called in read-only mode.
      * @throws This function can throw errors.
@@ -1910,6 +1952,8 @@ export class EntityAgeableComponent extends EntityComponent {
     readonly duration: number;
     /** @throws This property can throw when used. */
     readonly growUp: Trigger;
+    /** @throws This property can throw when used. */
+    readonly transformToItem: string;
     static readonly componentId = "minecraft:ageable";
     /** @throws This function can throw errors. */
     getDropItems(): string[];
@@ -2624,6 +2668,8 @@ export class EntityRideableComponent extends EntityComponent {
     /** @throws This property can throw when used. */
     readonly interactText: string;
     /** @throws This property can throw when used. */
+    readonly passengerMaxWidth: number;
+    /** @throws This property can throw when used. */
     readonly pullInEntities: boolean;
     /** @throws This property can throw when used. */
     readonly riderCanInteract: boolean;
@@ -3008,6 +3054,30 @@ export class ItemCompleteUseAfterEventSignal {
 // @ts-ignore Class inheritance allowed for native defined classes
 export class ItemComponent extends Component {
     private constructor();
+}
+
+export class ItemComponentRegistry {
+    private constructor();
+    /** 
+     * @throws This function can throw errors.
+     * 
+     * {@link ItemCustomComponentAlreadyRegisteredError}
+     * 
+     * {@link ItemCustomComponentNameError}
+     * 
+     * {@link ItemCustomComponentReloadNewComponentError}
+     * 
+     * {@link ItemCustomComponentReloadNewEventError}
+     * 
+     * {@link ItemCustomComponentReloadVersionError}
+     */
+    registerCustomComponent(name: string, itemCustomComponent: ItemCustomComponent): void;
+}
+
+export class ItemComponentUseEvent {
+    private constructor();
+    readonly itemStack?: ItemStack;
+    readonly source: Player;
 }
 
 // @ts-ignore Class inheritance allowed for native defined classes
@@ -4063,6 +4133,7 @@ export class Seat {
     readonly maxRiderCount: number;
     readonly minRiderCount: number;
     readonly position: Vector3;
+    readonly seatRotation: number;
 }
 
 export class ServerMessageAfterEventSignal {
@@ -4445,7 +4516,8 @@ export class WorldInitializeAfterEventSignal {
 
 export class WorldInitializeBeforeEvent {
     private constructor();
-    readonly blockTypeRegistry: BlockTypeRegistry;
+    readonly blockTypeRegistry: BlockComponentRegistry;
+    readonly itemComponentRegistry: ItemComponentRegistry;
 }
 
 export class WorldInitializeBeforeEventSignal {
@@ -4464,9 +4536,15 @@ export interface BiomeSearchOptions {
 }
 
 export interface BlockCustomComponent {
+    beforeOnPlayerPlace?: (arg: BlockComponentPlayerPlaceBeforeEvent) => void;
+    onEntityFallOn?: (arg: BlockComponentEntityFallOnEvent) => void;
+    onPlace?: (arg: BlockComponentOnPlaceEvent) => void;
+    onPlayerDestroy?: (arg: BlockComponentPlayerDestroyEvent) => void;
+    onPlayerInteract?: (arg: BlockComponentPlayerInteractEvent) => void;
     onRandomTick?: (arg: BlockComponentRandomTickEvent) => void;
     onStepOff?: (arg: BlockComponentStepOffEvent) => void;
     onStepOn?: (arg: BlockComponentStepOnEvent) => void;
+    onTick?: (arg: BlockComponentTickEvent) => void;
 }
 
 export interface BlockEventOptions {
@@ -4691,6 +4769,10 @@ export interface GreaterThanOrEqualsComparison {
     greaterThanOrEquals: number;
 }
 
+export interface ItemCustomComponent {
+    onUse?: (arg: ItemComponentUseEvent) => void;
+}
+
 export interface LessThanComparison {
     lessThan: number;
 }
@@ -4768,6 +4850,10 @@ export interface ScriptEventMessageFilterOptions {
     namespaces: string[];
 }
 
+export interface SpawnEntityOptions {
+    initialPersistence?: boolean;
+}
+
 export interface StructureCreateOptions {
     includeBlocks?: boolean;
     includeEntities?: boolean;
@@ -4784,11 +4870,6 @@ export interface StructurePlaceOptions {
     mirror?: StructureMirrorAxis;
     rotation?: StructureRotation;
     waterlogged?: boolean;
-}
-
-export interface StructureReadOptions {
-    includeBlocks?: boolean;
-    includeEntities?: boolean;
 }
 
 export interface TeleportOptions {
@@ -4849,6 +4930,31 @@ export class InvalidContainerSlotError extends Error {
 
 // @ts-ignore Class inheritance allowed for native defined classes
 export class InvalidStructureError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class ItemCustomComponentAlreadyRegisteredError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class ItemCustomComponentNameError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class ItemCustomComponentReloadNewComponentError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class ItemCustomComponentReloadNewEventError extends Error {
+    private constructor();
+}
+
+// @ts-ignore Class inheritance allowed for native defined classes
+export class ItemCustomComponentReloadVersionError extends Error {
     private constructor();
 }
 
